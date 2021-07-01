@@ -9,6 +9,31 @@
 #include "PdM_Ejer1.h"
 #include "sapi.h"
 
+bool_t encenderLed(gpioMap_t led){/* encender un led en particular */
+	gpioWrite( led, ON );
+	return 1;
+}
+
+bool_t apagarLeds(){ /* apagar todos los leds */
+	gpioWrite( LEDB, OFF );
+	gpioWrite( LED1, OFF );
+	gpioWrite( LED2, OFF );
+	gpioWrite( LED3, OFF );
+	return 1;
+}
+
+bool_t leerTecla (gpioMap_t tecla){ /* leer el estado de una tecla*/
+	  bool_t estado_tecla;
+	  estado_tecla = gpioRead( tecla );
+	  return estado_tecla;
+}
+
+/* psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t */
+//void activarSecuencia(gpioMap_t * psecuencia){
+
+//}
+
+
 /*=====[Definition macros of private constants]==============================*/
 
 /*=====[Definitions of extern global variables]==============================*/
@@ -25,10 +50,7 @@ int main( void )
    boardInit();
 
    //tipo *nombre_puntero
-   //bool_t encenderLed(gpioMap_t led); /* encender un led en particular */
-   //bool_t apagarLeds(); /* apagar todos los leds */
-   //bool_t leerTecla (gpioMap_t tecla); /* leer el estado de una tecla. Devuelve por valor el estado de la tecla pulsada (verdadero) o liberada (falso)*/
-   //void activarSecuencia(gpioMap_t * psecuencia); /* psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t */
+
 
    int8_t i = 0;
    uint8_t secuencia = 1;
@@ -37,16 +59,16 @@ int main( void )
 
    // ----- Repeat for ever -------------------------
    while( true ) {
-	  if ( !gpioRead( TEC1 ) ){
+	  if ( !leerTecla( TEC1 ) ){
 	     secuencia= 0;
-      }
-	  if ( !gpioRead( TEC2 ) ){
+	  }
+	  if ( !leerTecla( TEC2 ) ){
 	     delayWrite( &delay, 150 );
 	  }
-	  if ( !gpioRead( TEC3 ) ){
+	  if ( !leerTecla( TEC3 ) ){
          delayWrite( &delay, 750 );
       }
-	  if ( !gpioRead( TEC4 ) ){
+	  if ( !leerTecla( TEC4 ) ){
          secuencia = 1;
       }
 
@@ -60,28 +82,20 @@ int main( void )
       }
 
 	  if ( i == 0 ){
-	         gpioWrite( LEDB, ON );
-	         gpioWrite( LED1, OFF );
-	         gpioWrite( LED2, OFF );
-	         gpioWrite( LED3, OFF );
+		  apagarLeds();
+		  encenderLed( LEDB);
 	      }
 	  if ( i == 1 ){
-	         gpioWrite( LEDB, OFF );
-	         gpioWrite( LED1, ON );
-	         gpioWrite( LED2, OFF );
-	         gpioWrite( LED3, OFF );
+		  apagarLeds();
+		  encenderLed( LED1);
 	      }
 	  if ( i == 2 ){
-	         gpioWrite( LEDB, OFF );
-	         gpioWrite( LED1, OFF );
-	         gpioWrite( LED2, ON );
-	         gpioWrite( LED3, OFF );
+		  apagarLeds();
+		  encenderLed( LED2);
 	      }
 	  if ( i == 3 ){
-	         gpioWrite( LEDB, OFF );
-	         gpioWrite( LED1, OFF );
-	         gpioWrite( LED2, OFF );
-	         gpioWrite( LED3, ON );
+		  apagarLeds();
+		  encenderLed( LED3);
 	      }
 
 	      if ( i < 0 ){
