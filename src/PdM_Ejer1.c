@@ -1,38 +1,15 @@
 /*=============================================================================
  * Author: Fernando Prokopiuk <fernandoprokopiuk@gmail.com>
+ * Author: Armando Suhuán <suhuan.aj@pucp.edu.pe>
  * Date: 2021/06/30
- * Version: v1.0
+ * Version: v1.1
  *===========================================================================*/
 
 /*=====[Inclusions of function dependencies]=================================*/
 
 #include "PdM_Ejer1.h"
 #include "sapi.h"
-
-bool_t encenderLed(gpioMap_t led){/* encender un led en particular */
-	gpioWrite( led, ON );
-	return 1;
-}
-
-bool_t apagarLeds(){ /* apagar todos los leds */
-	gpioWrite( LEDB, OFF );
-	gpioWrite( LED1, OFF );
-	gpioWrite( LED2, OFF );
-	gpioWrite( LED3, OFF );
-	return 1;
-}
-
-bool_t leerTecla (gpioMap_t tecla){ /* leer el estado de una tecla*/
-	  bool_t estado_tecla;
-	  estado_tecla = gpioRead( tecla );
-	  return estado_tecla;
-}
-
-/* psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t */
-//void activarSecuencia(gpioMap_t * psecuencia){
-
-//}
-
+#include "Lib_Ejer1.h"
 
 /*=====[Definition macros of private constants]==============================*/
 
