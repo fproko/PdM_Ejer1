@@ -31,9 +31,18 @@ bool_t apagarLeds(){
  * Function: leerTecla 
  * leer el estado de una tecla
  *===========================================================================*/
-bool_t leerTecla (gpioMap_t tecla){
-	  bool_t estado_tecla;
-	  estado_tecla = gpioRead( tecla );
-	  return estado_tecla;
+bool_t leerTecla(gpioMap_t tecla)
+{
+	bool_t estado_tecla;
+	estado_tecla = gpioRead(tecla);
+	return estado_tecla;
 }
+
+/*=============================================================================
+ * Function: activarSecuencia 
+ * psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t
+ *===========================================================================*/
+/*void activarSecuencia(gpioMap_t * psecuencia){
+
+}*/
 

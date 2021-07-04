@@ -4,6 +4,9 @@
  * Date: 2021/07/03
  * Version: v1.1
  *===========================================================================*/
+#ifndef MISPROGS_PDM_EJER1_LIB_EJER1_H_
+#define MISPROGS_PDM_EJER1_LIB_EJER1_H_
+
 #include "sapi.h"
 
 /*=============================================================================
@@ -24,13 +27,10 @@ bool_t apagarLeds();
  *===========================================================================*/
 bool_t leerTecla (gpioMap_t tecla);
 
-
-
-
-
-#ifndef MISPROGS_PDM_EJER1_LIB_EJER1_H_
-#define MISPROGS_PDM_EJER1_LIB_EJER1_H_
-
-
+/*=============================================================================
+ * Function: activarSecuencia 
+ * psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t
+ *===========================================================================*/
+//void activarSecuencia(gpioMap_t * psecuencia);
 
 #endif /* MISPROGS_PDM_EJER1_LIB_EJER1_H_ */
