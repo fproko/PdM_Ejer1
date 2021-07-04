@@ -1,8 +1,8 @@
 /*=============================================================================
  * Author: Fernando Prokopiuk <fernandoprokopiuk@gmail.com>
  * Author: Armando Suhuán <suhuan.aj@pucp.edu.pe>
- * Date: 2021/06/30
- * Version: v1.1
+ * Date: 2021/07/04
+ * Version: v1.2
  *===========================================================================*/
 
 /*=====[Inclusions of function dependencies]=================================*/
@@ -26,74 +26,46 @@ int main(void)
 	// ----- Setup -----------------------------------
 	boardInit();
 
-	int8_t i = 0;
-	uint8_t secuencia = 1;
+	int8_t i = 0; 
 	delay_t delay;
 	delayConfig(&delay, 800);
+	static gpioMap_t secuencia1[] = {LEDB, LED1, LED2, LED3};
+	static gpioMap_t secuencia2[] = {LED3, LED2, LED1, LEDB};
+	static bool_t  flagsControl[] = {FALSE, FALSE, FALSE, FALSE};
+	/*
+	flagsControl[0]-> Tecla leída
+	flagsControl[1]-> Led encendido
+	flagsControl[2]-> Leds apagados
+	*/
 	gpioMap_t * psecuencia = secuencia1;
-	gpioMap_t secuencia1[] = {LEDB, LED1, LED2, LED3};
-	gpioMap_t secuencia2[] = {LED3, LED2, LED1, LEDB}; 
-
+	const uint8_t ultimoLed = sizeof(secuencia1)/sizeof(gpioMap_t); 
 	// ----- Repeat for ever -------------------------
 	while (true)
 	{
-		if (!leerTecla(TEC1))
+		if (leerTecla(TEC1)==flagsControl[0])
 		{
-			secuencia = 0;
-			gpioMap_t * psecuencia = secuencia1;
+			psecuencia = secuencia1;			
 		}
-		if (!leerTecla(TEC2))
+		if (leerTecla(TEC2)==flagsControl[0])
 		{
 			delayWrite(&delay, 150);
 		}
-		if (!leerTecla(TEC3))
+		if (leerTecla(TEC3)==flagsControl[0])
 		{
-			delayWrite(&delay, 750);
+			delayWrite(&delay, 1500);
 		}
-		if (!leerTecla(TEC4))
+		if (leerTecla(TEC4)==flagsControl[0])
 		{
-			//secuencia = 1;
-			gpioMap_t * psecuencia = secuencia2;
+			psecuencia = secuencia2;
 		}
+
+		activarSecuencia(psecuencia,i);
 
 		if (delayRead(&delay))
 		{
-			if (!secuencia)
-			{
-				i--;
-			}
-			else
-			{
-				i++;
-			}
+			i++;
 		}
-
-		if (i == 0)
-		{
-			apagarLeds();
-			encenderLed(LEDB);
-		}
-		if (i == 1)
-		{
-			apagarLeds();
-			encenderLed(LED1);
-		}
-		if (i == 2)
-		{
-			apagarLeds();
-			encenderLed(LED2);
-		}
-		if (i == 3)
-		{
-			apagarLeds();
-			encenderLed(LED3);
-		}
-
-		if (i < 0)
-		{
-			i = 3;
-		}
-		if (i > 3)
+		if (i > ultimoLed - 1)
 		{
 			i = 0;
 		}

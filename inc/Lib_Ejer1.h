@@ -1,8 +1,8 @@
 /*=============================================================================
  * Author: Fernando Prokopiuk <fernandoprokopiuk@gmail.com>
  * Author: Armando Suhuán <suhuan.aj@pucp.edu.pe>
- * Date: 2021/07/03
- * Version: v1.1
+ * Date: 2021/07/04
+ * Version: v1.2
  *===========================================================================*/
 #ifndef MISPROGS_PDM_EJER1_LIB_EJER1_H_
 #define MISPROGS_PDM_EJER1_LIB_EJER1_H_
@@ -31,6 +31,6 @@ bool_t leerTecla (gpioMap_t tecla);
  * Function: activarSecuencia 
  * psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t
  *===========================================================================*/
-void activarSecuencia(gpioMap_t * psecuencia);
+void activarSecuencia(gpioMap_t * psecuencia, int8_t i);
 
 #endif /* MISPROGS_PDM_EJER1_LIB_EJER1_H_ */

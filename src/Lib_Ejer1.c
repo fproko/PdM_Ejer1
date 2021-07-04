@@ -1,8 +1,8 @@
 /*=============================================================================
  * Author: Fernando Prokopiuk <fernandoprokopiuk@gmail.com>
  * Author: Armando Suhuán <suhuan.aj@pucp.edu.pe>
- * Date: 2021/07/03
- * Version: v1.1
+ * Date: 2021/07/04
+ * Version: v1.2
  *===========================================================================*/
 #include "Lib_Ejer1.h"
 
@@ -20,6 +20,8 @@ bool_t encenderLed(gpioMap_t led){
  * apagar todos los leds
  *===========================================================================*/
 bool_t apagarLeds(){
+	gpioWrite( LEDR, OFF );
+	gpioWrite( LEDG, OFF );
 	gpioWrite( LEDB, OFF );
 	gpioWrite( LED1, OFF );
 	gpioWrite( LED2, OFF );
@@ -42,14 +44,8 @@ bool_t leerTecla(gpioMap_t tecla)
  * Function: activarSecuencia 
  * psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t
  *===========================================================================*/
-void activarSecuencia(gpioMap_t * psecuencia){
-	int8_t count=4
-	for (int8_t i = 0; i < count; i++)
-	{
-		apagarLeds();
-		encenderLed(*(psecuencia + i));
-	}
-	
-	
+void activarSecuencia(gpioMap_t * psecuencia, int8_t i){
+	apagarLeds();
+	encenderLed(*(psecuencia+i));
 }
 
