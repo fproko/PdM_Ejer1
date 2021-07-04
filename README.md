@@ -1,7 +1,7 @@
 # PdM - Práctica clase 1
 Autores:
-        Armando Suhuan 
-        Fernando Prokopiuk
+    - Armando Suhuan 
+    - Fernando Prokopiuk
 
 Última actualización: 04/07/2021
 # Ejercicio 1
@@ -11,7 +11,7 @@ Prender secuencialmente los leds de la placa LED1, LED2, LED3 y LEDB.
 - Una vez que se pasa al siguiente led los demás deberán apagarse.
 - Utilizar solamente LED azul de los leds RGB.
 - Controlar el sentido de la secuencia con los botones TEC1 y TEC4:
-    - Incialmente la secuencia es LEDB -> LED1 -> LED2 -> LED3 ...
+    - Inicialmente la secuencia es LEDB -> LED1 -> LED2 -> LED3 ...
     - Al presionar TEC4 recorre una secuencia inversa : LED3 -> LED2 -> LED1 -> LEDB ...
     - Al presionar TEC1 recorre la secuencia original: LEDB -> LED1 -> LED2 -> LED3 ...
 - Controlar el tiempo de encendido de los leds dentro de la secuencia:
