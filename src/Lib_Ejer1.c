@@ -42,7 +42,14 @@ bool_t leerTecla(gpioMap_t tecla)
  * Function: activarSecuencia 
  * psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t
  *===========================================================================*/
-/*void activarSecuencia(gpioMap_t * psecuencia){
-
-}*/
+void activarSecuencia(gpioMap_t * psecuencia){
+	int8_t count=4
+	for (int8_t i = 0; i < count; i++)
+	{
+		apagarLeds();
+		encenderLed(*(psecuencia + i));
+	}
+	
+	
+}
 

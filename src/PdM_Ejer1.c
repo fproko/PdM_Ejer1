@@ -30,6 +30,9 @@ int main(void)
 	uint8_t secuencia = 1;
 	delay_t delay;
 	delayConfig(&delay, 800);
+	gpioMap_t * psecuencia = secuencia1;
+	gpioMap_t secuencia1[] = {LEDB, LED1, LED2, LED3};
+	gpioMap_t secuencia2[] = {LED3, LED2, LED1, LEDB}; 
 
 	// ----- Repeat for ever -------------------------
 	while (true)
@@ -37,6 +40,7 @@ int main(void)
 		if (!leerTecla(TEC1))
 		{
 			secuencia = 0;
+			gpioMap_t * psecuencia = secuencia1;
 		}
 		if (!leerTecla(TEC2))
 		{
@@ -48,7 +52,8 @@ int main(void)
 		}
 		if (!leerTecla(TEC4))
 		{
-			secuencia = 1;
+			//secuencia = 1;
+			gpioMap_t * psecuencia = secuencia2;
 		}
 
 		if (delayRead(&delay))
