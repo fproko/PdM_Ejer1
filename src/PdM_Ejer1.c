@@ -38,7 +38,8 @@ int main(void)
 	flagsControl[2]-> Leds apagados
 	*/
 	gpioMap_t * psecuencia = secuencia1;
-	const uint8_t ultimoLed = sizeof(secuencia1)/sizeof(gpioMap_t); 
+	const uint8_t ultimoLed = sizeof(secuencia1)/sizeof(gpioMap_t);
+
 	// ----- Repeat for ever -------------------------
 	while (true)
 	{
@@ -52,7 +53,7 @@ int main(void)
 		}
 		if (leerTecla(TEC3)==flagsControl[0])
 		{
-			delayWrite(&delay, 1500);
+			delayWrite(&delay, 750);
 		}
 		if (leerTecla(TEC4)==flagsControl[0])
 		{

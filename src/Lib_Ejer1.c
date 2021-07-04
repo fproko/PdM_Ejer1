@@ -8,7 +8,10 @@
 
 /*=============================================================================
  * Function: encenderLed 
- * encender un led en particular
+ * Description: Enciende un led en particular (LEDX) -> LED1, LED2, LED3 o LEDB 
+ * Inpunt: Led que se busca encender
+ * Output: Valor booleano que indica el encendido exitoso del LEDX
+	"1" -> Se completó el encendido del LEDX
  *===========================================================================*/
 bool_t encenderLed(gpioMap_t led){
 	gpioWrite( led, ON );
@@ -17,7 +20,10 @@ bool_t encenderLed(gpioMap_t led){
 
 /*=============================================================================
  * Function: apagarLeds 
- * apagar todos los leds
+ * Description: Apaga todos los Leds
+ * Inpunt: No recibe entradas
+ * Output: Valor booleano
+	"1" -> Se completó el apagado de Leds
  *===========================================================================*/
 bool_t apagarLeds(){
 	gpioWrite( LEDR, OFF );
@@ -31,7 +37,12 @@ bool_t apagarLeds(){
 
 /*=============================================================================
  * Function: leerTecla 
- * leer el estado de una tecla
+ * Description: La función lee el estado de la entrada del uC luego de apretar una tecla
+ * Inpunt: 
+	1) Tecla a leer -> TEC1, TEC2, TEC3 o TEC4
+ * Output: Valor booleano estado_tecla
+	"0" -> Tecla apretada (ON)
+	"1" -> Tecla sin apretar (OFF)
  *===========================================================================*/
 bool_t leerTecla(gpioMap_t tecla)
 {
@@ -42,7 +53,17 @@ bool_t leerTecla(gpioMap_t tecla)
 
 /*=============================================================================
  * Function: activarSecuencia 
- * psecuencia apunta a una secuencia de leds o arreglo de gpioMap_t
+ * Description: Enciende el Led correspondiente a la posición dentro de una secuencia determinada
+
+Secuencia 1:					Secuencia 2:
+	 ____ ____ ____ ____		 ____ ____ ____ ____
+    |LEDB|LED1|LED2|LED3|		|LED3|LED2|LED1|LEDB|
+i->   0     1    2    3	     i->  0     1    2    3		
+
+ * Inpunt: 
+	1) Puntero que apunta a la secuencia según la tecla presionada
+	2) Posición del Led que corresponde encender dentro la secuencia que corresponda.
+ * Output: No devuelve salida
  *===========================================================================*/
 void activarSecuencia(gpioMap_t * psecuencia, int8_t i){
 	apagarLeds();
